@@ -1,637 +1,219 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f7">
 <title>Happy Women's Day 20/10 💗</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap');
-
-:root {
-  --pink: #ff5c9a;
-  --pink-light: #ffe3ef;
-  --purple: #9c69d8;
-  --text: #653b60;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  color: var(--text);
-  background: linear-gradient(135deg, #fff0f6, #f5eaff, #fff7fb);
-}
-
-button {
-  font: inherit;
-}
-
-#fireworks {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-#petals,
-#sparkles {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: -40px;
-  color: #ff8fba;
-  opacity: .8;
-  animation: fall linear forwards;
-  filter: drop-shadow(0 2px 5px #ffb9d5);
-}
-
-@keyframes fall {
-  0% { transform: translateY(-30px) rotate(0deg); }
-  100% { transform: translateY(110vh) rotate(700deg); }
-}
-
-.sparkle {
-  position: absolute;
-  color: #fff;
-  text-shadow: 0 0 8px #ff69a8, 0 0 18px #ff69a8;
-  animation: twinkle 1.6s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: .2; transform: scale(.65); }
-  to { opacity: 1; transform: scale(1.3); }
-}
-
-.screen {
-  position: relative;
-  z-index: 2;
-  display: none;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 65px 18px 80px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.screen.active {
-  display: flex;
-  animation: screenIn .65s ease both;
-}
-
-@keyframes screenIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.content {
-  width: min(100%, 720px);
-  flex-shrink: 0;
-  padding: clamp(20px, 5vw, 42px);
-  border: 1px solid rgba(255,255,255,.9);
-  border-radius: 30px;
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 15px 55px rgba(208, 115, 166, .15);
-  backdrop-filter: blur(12px);
-}
-
-.eyebrow {
-  color: #d34e91;
-  font-size: .8rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-h1, h2 {
-  margin: 14px 0;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-
-h1 {
-  color: #e34f91;
-  font-size: clamp(2rem, 7vw, 4rem);
-}
-
-h2 {
-  color: #d94e91;
-  font-size: clamp(1.7rem, 5vw, 2.8rem);
-}
-
-.script {
-  font-family: 'Dancing Script', cursive;
-  color: #bd58a5;
-  font-size: clamp(1.6rem, 5vw, 2.5rem);
-}
-
-p, .message {
-  font-size: clamp(.98rem, 2.6vw, 1.12rem);
-  line-height: 2;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
-}
-
-.emoji {
-  margin: 12px 0;
-  font-size: clamp(3rem, 12vw, 5.5rem);
-  animation: float 2.5s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-10px) rotate(3deg); }
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.btn {
-  min-height: 46px;
-  padding: 12px 22px;
-  border: 0;
-  border-radius: 999px;
-  color: white;
-  background: linear-gradient(120deg, #ff6fa8, #c078dc);
-  box-shadow: 0 7px 18px rgba(218, 93, 160, .25);
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(218, 93, 160, .35);
-}
-
-.btn.secondary {
-  color: #bf4e91;
-  border: 1px solid #f4b6d5;
-  background: #fff;
-  box-shadow: none;
-}
-
-.dots {
-  position: fixed;
-  z-index: 5;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  width: 95%;
-  pointer-events: none;
-}
-
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #efc5db;
-  box-shadow: 0 1px 5px #e7a9ca;
-  transition: all .25s;
-}
-
-.dot.active {
-  width: 25px;
-  border-radius: 10px;
-  background: #e55b9a;
-}
-
-.music-btn {
-  position: fixed;
-  z-index: 10;
-  top: 35px;
-  right: 14px;
-  width: 46px;
-  height: 46px;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: #ffffffd9;
-  font-size: 1.25rem;
-  cursor: pointer;
-  box-shadow: 0 5px 18px #e8a6ca55;
-}
-
-.music-btn.playing {
-  animation: spin 5s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.envelope {
-  width: min(230px, 65vw);
-  height: 145px;
-  position: relative;
-  margin: 25px auto;
-  cursor: pointer;
-  border-radius: 10px;
-  background: #ffb9d4;
-  box-shadow: 0 12px 28px #df77aa44;
-}
-
-.envelope::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #ff8fba;
-  clip-path: polygon(0 0, 50% 57%, 100% 0);
-  transform-origin: top;
-  transition: transform .65s;
-  z-index: 2;
-}
-
-.envelope::after {
-  content: "💗";
-  position: absolute;
-  z-index: 3;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-}
-
-.envelope.open::before {
-  transform: rotateX(180deg);
-}
-
-.letter {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 1s ease, opacity .7s ease;
-}
-
-.letter.show {
-  max-height: 600px;
-  opacity: 1;
-}
-
-.bubble {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 15px;
-  border: 1px solid #f5c3db;
-  border-radius: 18px;
-  background: #fff8fc;
-  color: #c94d8d;
-  font-weight: 600;
-}
-
-.typewriter {
-  min-height: 100px;
-  text-align: left;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  line-height: 2;
-}
-
-.footer-note {
-  margin-top: 25px;
-  color: #b76a9b;
-  font-size: .8rem;
-}
-
-@media (max-width: 480px) {
-  .screen {
-    padding: 76px 12px 65px;
-  }
-
-  .content {
-    padding: 24px 17px;
-    border-radius: 23px;
-  }
-
-  .dots {
-    gap: 5px;
-  }
-
-  .dot {
-    width: 7px;
-    height: 7px;
-  }
-
-  .dot.active {
-    width: 19px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-}
+:root{--pink:#e95198;--purple:#9c69d8;--text:#653b60;--paper:rgba(255,255,255,.83)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;font-family:'Be Vietnam Pro',sans-serif;color:var(--text);background:linear-gradient(135deg,#fff0f6,#f5eaff,#fff7fb)}
+button{font:inherit}
+#fireworks,#petals,#sparkles{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#fireworks{z-index:0}
+#petals,#sparkles{z-index:1;overflow:hidden}
+.petal{position:absolute;top:-35px;animation:fall linear forwards;filter:drop-shadow(0 2px 5px #ffb9d5)}
+@keyframes fall{to{transform:translateY(110vh) rotate(700deg)}}
+.sparkle{position:absolute;color:white;text-shadow:0 0 8px #ff69a8,0 0 18px #ff69a8;animation:twinkle 1.6s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.2;transform:scale(.65)}to{opacity:1;transform:scale(1.3)}}
+.screen{position:relative;z-index:2;display:none;width:100%;min-height:100vh;min-height:100svh;padding:76px 14px 80px;align-items:center;justify-content:center;text-align:center}
+.screen.active{display:flex;animation:screenIn .55s ease both}
+@keyframes screenIn{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+.content{width:min(100%,760px);flex-shrink:0;padding:clamp(20px,5vw,42px);border:1px solid #ffffffd9;border-radius:30px;background:var(--paper);box-shadow:0 15px 55px #d073a626;backdrop-filter:blur(12px)}
+.eyebrow{color:#d34e91;font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+h1,h2{margin:14px 0;line-height:1.4;overflow-wrap:anywhere}
+h1{color:#e34f91;font-size:clamp(2rem,7vw,4rem)}
+h2{color:#d94e91;font-size:clamp(1.65rem,5vw,2.65rem)}
+.script{font-family:'Dancing Script',cursive;color:#bd58a5;font-size:clamp(1.55rem,5vw,2.35rem)}
+p,.message{font-size:clamp(.97rem,2.6vw,1.1rem);line-height:1.9;overflow-wrap:anywhere;white-space:pre-wrap}
+.emoji{margin:12px 0;font-size:clamp(3rem,12vw,5.5rem);animation:float 2.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+.buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+.btn{min-height:44px;padding:11px 20px;border:0;border-radius:999px;color:white;background:linear-gradient(120deg,#ff6fa8,#c078dc);box-shadow:0 7px 18px #da5da040;cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.secondary{color:#bf4e91;border:1px solid #f4b6d5;background:white;box-shadow:none}
+.dots{position:fixed;z-index:5;top:15px;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:6px;width:95%;pointer-events:none}
+.dot{width:8px;height:8px;border-radius:50%;background:#efc5db;box-shadow:0 1px 5px #e7a9ca;transition:all .25s}
+.dot.active{width:23px;border-radius:10px;background:#e55b9a}
+.music-btn{position:fixed;z-index:10;top:34px;right:14px;width:44px;height:44px;border:1px solid white;border-radius:50%;background:#ffffffdf;font-size:1.2rem;cursor:pointer;box-shadow:0 5px 18px #e8a6ca55}
+.music-btn.playing{animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.envelope{width:min(230px,65vw);height:140px;position:relative;margin:25px auto;cursor:pointer;border-radius:10px;background:#ffb9d4;box-shadow:0 12px 28px #df77aa44}
+.envelope:before{content:"";position:absolute;inset:0;background:#ff8fba;clip-path:polygon(0 0,50% 57%,100% 0);transform-origin:top;transition:transform .65s;z-index:2}
+.envelope:after{content:"💗";position:absolute;z-index:3;top:47%;left:50%;transform:translate(-50%,-50%);font-size:2rem}
+.envelope.open:before{transform:rotateX(180deg)}
+.letter{max-height:0;overflow:hidden;opacity:0;transition:max-height 1s ease,opacity .7s ease}
+.letter.show{max-height:650px;opacity:1}
+.flower-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+.flower-card{border:1px solid #f4c5dc;border-radius:20px;padding:16px 12px;background:linear-gradient(145deg,#fffafd,#fff0f7);color:var(--text);cursor:pointer;min-height:120px;transition:transform .2s,box-shadow .2s}
+.flower-card:hover,.flower-card:focus-visible{transform:translateY(-3px);box-shadow:0 8px 22px #d56fa633;outline:2px solid #ef9fc5}
+.flower-card .flower{display:block;font-size:2.2rem;margin-bottom:5px}
+.flower-card strong{display:block;color:#c94d8d}
+.flower-card small{display:block;margin-top:5px;color:#9b7190}
+.flower-message{min-height:84px;padding:14px;border-radius:18px;background:#fff5fa;border:1px dashed #efafd0;line-height:1.8}
+.bubble{display:inline-block;margin:5px;padding:9px 13px;border:1px solid #f5c3db;border-radius:18px;background:#fff8fc;color:#c94d8d;font-weight:600}
+.typewriter{text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;min-height:100px}
+.footer-note{margin-top:22px;color:#b76a9b;font-size:.8rem}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}
+.choice{padding:13px;border:1px solid #f1c3db;border-radius:16px;background:#fff9fc;color:#bc4e8c;cursor:pointer}
+.choice.selected{background:#ffe1ef;border-color:#df5d9b;box-shadow:0 0 0 2px #f7c1da}
+.wish-result{min-height:56px;font-weight:600;color:#c34b8b;line-height:1.8}
+@media(max-width:480px){.screen{padding:76px 12px 65px}.content{padding:23px 16px;border-radius:23px}.dots{gap:5px}.dot{width:6px;height:6px}.dot.active{width:18px}.flower-grid{gap:8px}.flower-card{padding:13px 8px;min-height:115px}.choice-grid{gap:8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 </head>
-
 <body>
-<canvas id="fireworks"></canvas>
-<div id="petals"></div>
-<div id="sparkles"></div>
-
+<canvas id="fireworks"></canvas><div id="petals"></div><div id="sparkles"></div>
 <div class="dots" id="dots" aria-label="Tiến trình"></div>
-
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()"
-        aria-label="Bật hoặc tắt nhạc" title="Bật/tắt nhạc">♫</button>
-
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Bật hoặc tắt nhạc" title="Bật/tắt nhạc">♫</button>
 <audio id="music" src="music.mp3" loop preload="auto"></audio>
 
-<!-- MÀN 1 -->
-<section class="screen active" data-screen="0">
-  <div class="content">
-    <div class="eyebrow">A little surprise for you</div>
-    <div class="emoji">🌷💗🌷</div>
-    <h1>Happy Women's Day!</h1>
-    <div class="script">Chúc mừng ngày 20/10</div>
-    <p>
-      Gửi đến tất cả những cô gái tuyệt vời của chúng ta!
-      Hôm nay có một món quà nho nhỏ dành riêng cho các bạn.
-    </p>
-    <p>Chuẩn bị tinh thần nhận yêu thương chưa nào? ✨</p>
-    <div class="buttons">
-      <button class="btn" onclick="go(1)">Mở quà thôi 💌</button>
-    </div>
-    <div class="footer-note">Made with love and a little bit of chaos ♡</div>
-  </div>
+<section class="screen active">
+ <div class="content"><div class="eyebrow">A little surprise for you</div><div class="emoji">🌷💗🌷</div>
+ <h1>Happy Women's Day!</h1><div class="script">Chúc mừng ngày 20/10</div>
+ <p>Gửi đến tất cả những cô gái tuyệt vời của chúng ta! Hôm nay có một món quà nho nhỏ dành riêng cho các bạn.</p>
+ <p>Chuẩn bị tinh thần nhận yêu thương chưa nào? ✨</p>
+ <div class="buttons"><button class="btn" onclick="go(1)">Mở quà thôi 💌</button></div><div class="footer-note">Made with love and a little bit of chaos ♡</div></div>
 </section>
 
-<!-- MÀN 2 -->
-<section class="screen" data-screen="1">
-  <div class="content">
-    <div class="eyebrow">Secret message</div>
-    <h2>📩 Một chiếc thư bí mật</h2>
-    <p>Nghe nói bên trong có điều gì đó rất đáng yêu...</p>
-    <div class="envelope" id="envelope" onclick="openLetter()"
-         role="button" tabindex="0" aria-label="Mở phong bì"></div>
-    <div class="letter" id="letter">
-      <p class="script">Gửi những bông hoa xinh đẹp 💗</p>
-      <p>
-        Chúc các bạn luôn rạng rỡ, mạnh mẽ và hạnh phúc.
-        Mong mọi ngày của các bạn đều có người quan tâm,
-        có chuyện vui để cười và có những điều tốt đẹp để mong chờ.
-      </p>
-    </div>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(0)">← Quay lại</button>
-      <button class="btn" onclick="go(2)">Tiếp tục 🌸</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">Secret message</div><h2>📩 Một chiếc thư bí mật</h2><p>Nhấn vào phong bì để mở lời nhắn dành cho các bạn nhé!</p>
+ <div class="envelope" id="envelope" onclick="openLetter()" role="button" tabindex="0" aria-label="Mở phong bì"></div>
+ <div class="letter" id="letter"><p class="script">Gửi những bông hoa xinh đẹp 💗</p><p>Chúc các bạn luôn rạng rỡ, mạnh mẽ và hạnh phúc. Mong ngày nào cũng có người quan tâm, có chuyện vui để cười và có điều tốt đẹp để mong chờ.</p></div>
+ <div class="buttons"><button class="btn secondary" onclick="go(0)">← Quay lại</button><button class="btn" onclick="go(2)">Mở vườn hoa 🌸</button></div></div>
 </section>
 
-<!-- MÀN 3 -->
-<section class="screen" data-screen="2">
-  <div class="content">
-    <div class="eyebrow">Flowers for you</div>
-    <div class="emoji">💐</div>
-    <h2>Tặng các bạn một vườn hoa</h2>
-    <p>
-      Mỗi bông hoa tượng trưng cho một điều tốt đẹp:
-      sự dịu dàng, lòng can đảm, trí thông minh,
-      cá tính riêng và nụ cười không thể thay thế.
-    </p>
-    <div>
-      <span class="bubble">🌹 Xinh đẹp</span>
-      <span class="bubble">🌻 Tự tin</span>
-      <span class="bubble">🌷 Bình an</span>
-      <span class="bubble">🌼 May mắn</span>
-      <span class="bubble">🌸 Hạnh phúc</span>
-    </div>
-    <p class="script">Mong các bạn luôn nở rộ theo cách của riêng mình.</p>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(1)">← Quay lại</button>
-      <button class="btn" onclick="go(3)">Nhận lời chúc ✨</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">Tap a flower</div><div class="emoji">💐</div><h2>Chọn một bông hoa nhé!</h2>
+ <p>Mỗi bông hoa mang theo một lời chúc riêng. Nhấn vào từng bông để mở thông điệp 💗</p>
+ <div class="flower-grid">
+  <button class="flower-card" onclick="showFlower(0)"><span class="flower">🌹</span><strong>Xinh đẹp</strong><small>Nhấn để mở lời chúc</small></button>
+  <button class="flower-card" onclick="showFlower(1)"><span class="flower">🌻</span><strong>Tự tin</strong><small>Nhấn để mở lời chúc</small></button>
+  <button class="flower-card" onclick="showFlower(2)"><span class="flower">🕊️</span><strong>Bình an</strong><small>Nhấn để mở lời chúc</small></button>
+  <button class="flower-card" onclick="showFlower(3)"><span class="flower">🍀</span><strong>May mắn</strong><small>Nhấn để mở lời chúc</small></button>
+  <button class="flower-card" onclick="showFlower(4)" style="grid-column:1/-1"><span class="flower">🌸</span><strong>Hạnh phúc</strong><small>Nhấn để mở lời chúc</small></button>
+ </div>
+ <div class="flower-message" id="flowerMessage" aria-live="polite">🌷 Chọn một bông hoa phía trên để đọc lời chúc.</div>
+ <div class="buttons"><button class="btn secondary" onclick="go(1)">← Quay lại</button><button class="btn" onclick="go(3)">Điều xứng đáng ✨</button></div></div>
 </section>
 
-<!-- MÀN 4 -->
-<section class="screen" data-screen="3">
-  <div class="content">
-    <div class="eyebrow">You deserve the best</div>
-    <div class="emoji">🦋</div>
-    <h2>Các bạn xứng đáng với những điều tốt đẹp</h2>
-    <p>
-      Xứng đáng được lắng nghe khi mệt mỏi.
-      Xứng đáng được tôn trọng khi nói lên suy nghĩ.
-      Xứng đáng được yêu thương mà không cần phải trở thành ai khác.
-    </p>
-    <p>
-      Đừng quên rằng các bạn đã tuyệt vời theo cách riêng của mình rồi nhé!
-    </p>
-    <div class="script">Be yourself. Be happy. Be proud. 💕</div>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(2)">← Quay lại</button>
-      <button class="btn" onclick="go(4)">Đến hội chị em 😂</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">You deserve the best</div><div class="emoji">🦋</div><h2>Các bạn xứng đáng với điều tốt đẹp</h2>
+ <p>💗 Được lắng nghe khi mệt mỏi.</p><p>💗 Được tôn trọng khi nói lên suy nghĩ.</p><p>💗 Được yêu thương mà không cần trở thành ai khác.</p>
+ <p>Đừng quên rằng các bạn đã tuyệt vời theo cách riêng của mình rồi nhé!</p><div class="script">Be yourself. Be happy. Be proud.</div>
+ <div class="buttons"><button class="btn secondary" onclick="go(2)">← Quay lại</button><button class="btn" onclick="go(4)">Đến hội chị em 😂</button></div></div>
 </section>
 
-<!-- MÀN 5 -->
-<section class="screen" data-screen="4">
-  <div class="content">
-    <div class="eyebrow">Girl gang energy</div>
-    <div class="emoji">👑👯‍♀️👑</div>
-    <h2>Hội chị em mình là nhất!</h2>
-    <p>
-      Chúc các bạn lúc nào cũng xinh như ảnh đã chỉnh,
-      vui như ngày được nghỉ học và giàu như lúc vừa nhận lương.
-    </p>
-    <p>
-      Đi chơi không trễ giờ, chụp ảnh không ai dìm,
-      ăn món nào cũng ngon và gặp deadline thì...
-      mong deadline tự biết đường né chúng ta! 😂
-    </p>
-    <div class="bubble">💅 Slay mỗi ngày</div>
-    <div class="bubble">🧋 Trà sữa không tăng cân</div>
-    <div class="bubble">📚 Học đâu hiểu đó</div>
-    <div class="bubble">💸 Ví luôn rủng rỉnh</div>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(3)">← Quay lại</button>
-      <button class="btn" onclick="go(5)">Quà tiếp theo 🎁</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">A little wish just for you</div><div class="emoji">👑👯‍♀️👑</div><h2>Hội chị em mình là nhất!</h2>
+ <p>Mỗi người đều có điểm mạnh riêng và cũng có điều muốn hoàn thiện. Chọn một điều bạn muốn cải thiện hoặc mong có thêm nhé — mỗi lựa chọn là một lời chúc dành riêng cho bạn 💗</p>
+ <div class="choice-grid" id="sisterChoices">
+  <button class="choice" onclick="chooseSisterWish(this,0)">💪 Tự tin hơn</button>
+  <button class="choice" onclick="chooseSisterWish(this,1)">📚 Học tập tiến bộ</button>
+  <button class="choice" onclick="chooseSisterWish(this,2)">🌿 Bớt căng thẳng</button>
+  <button class="choice" onclick="chooseSisterWish(this,3)">🗣️ Dám nói điều mình nghĩ</button>
+  <button class="choice" onclick="chooseSisterWish(this,4)">💗 Yêu bản thân hơn</button>
+  <button class="choice" onclick="chooseSisterWish(this,5)">🤝 Kết nối nhiều hơn</button>
+  <button class="choice" onclick="chooseSisterWish(this,6)">✨ Kiên trì với mục tiêu</button>
+  <button class="choice" onclick="chooseSisterWish(this,7)">🍀 Đón thêm cơ hội</button>
+ </div>
+ <div class="wish-result" id="sisterWishResult" aria-live="polite">Chọn điều bạn muốn cải thiện để nhận lời chúc riêng nhé 🌷</div>
+ <div class="buttons"><button class="btn secondary" onclick="go(3)">← Quay lại</button><button class="btn" onclick="go(5)">Quà tiếp theo 🎁</button></div></div>
 </section>
 
-<!-- MÀN 6 -->
-<section class="screen" data-screen="5">
-  <div class="content">
-    <div class="eyebrow">A gift from the heart</div>
-    <div class="emoji">🎁💝🎀</div>
-    <h2>Món quà nhỏ, tình cảm to</h2>
-    <p>
-      Có thể món quà này không quá lớn,
-      nhưng từng lời chúc đều được gửi đến các bạn
-      bằng sự trân trọng và quý mến.
-    </p>
-    <p>
-      Cảm ơn vì đã góp mặt, cùng học tập, cùng tạo nên
-      những kỷ niệm và làm cho tập thể của chúng ta
-      có thêm nhiều màu sắc.
-    </p>
-    <div class="script">Một tập thể vui hơn khi có các bạn! 💗</div>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(4)">← Quay lại</button>
-      <button class="btn" onclick="go(6)">Ước một điều đi 🌙</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">A gift from the heart</div><div class="emoji">🎁💝🎀</div><h2>Món quà nhỏ, tình cảm to</h2>
+ <p>Có thể món quà này không quá lớn, nhưng từng lời chúc đều được gửi đến các bạn bằng sự trân trọng và quý mến.</p>
+ <p>Cảm ơn vì đã góp mặt, cùng học tập, cùng tạo nên kỷ niệm và làm cho tập thể của chúng ta có thêm nhiều màu sắc.</p>
+ <div class="script">Một tập thể vui hơn khi có các bạn! 💗</div>
+ <div class="buttons"><button class="btn secondary" onclick="go(4)">← Quay lại</button><button class="btn" onclick="go(6)">Ước một điều đi 🌙</button></div></div>
 </section>
 
-<!-- MÀN 7 -->
-<section class="screen" data-screen="6">
-  <div class="content">
-    <div class="eyebrow">Make a wish</div>
-    <div class="emoji">🌙⭐✨</div>
-    <h2>Nhắm mắt và ước một điều nhé!</h2>
-    <p>
-      Ước cho những điều đang cố gắng sẽ có kết quả.
-      Ước cho những ngày khó khăn sớm qua đi.
-      Ước cho bản thân luôn khỏe mạnh, bình an
-      và có đủ dũng khí để theo đuổi điều mình yêu thích.
-    </p>
-    <p class="script">Mong điều ước đẹp nhất sẽ tìm đến các bạn.</p>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(5)">← Quay lại</button>
-      <button class="btn" onclick="go(7)">Đọc lời chúc cuối 💌</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">Make a wish</div><div class="emoji">🌙⭐✨</div><h2>Chọn điều bạn mong ước nhé!</h2>
+ <p>Chọn một điều bạn muốn gửi gắm cho chặng đường sắp tới.</p>
+ <div class="choice-grid">
+  <button class="choice" onclick="chooseWish(this,'Học tập thuận lợi, thi cử bình tĩnh và đạt kết quả như mong muốn! 📚')">📚 Học tập</button>
+  <button class="choice" onclick="chooseWish(this,'Luôn khỏe mạnh, bình an và có thật nhiều ngày vui! 🕊️')">🕊️ Bình an</button>
+  <button class="choice" onclick="chooseWish(this,'Luôn được yêu thương, trân trọng và gặp người tử tế! 💗')">💗 Tình bạn</button>
+  <button class="choice" onclick="chooseWish(this,'Đủ dũng khí theo đuổi ước mơ và biến điều mong muốn thành hiện thực! ✨')">✨ Ước mơ</button>
+ </div>
+ <div class="wish-result" id="wishResult" aria-live="polite">Chạm vào một lựa chọn để nhận lời chúc ✨</div>
+ <div class="buttons"><button class="btn secondary" onclick="go(5)">← Quay lại</button><button class="btn" onclick="go(7)">Lời chúc cuối 💌</button></div></div>
 </section>
 
-<!-- MÀN 8 -->
-<section class="screen" data-screen="7">
-  <div class="content">
-    <div class="eyebrow">A special wish for everyone</div>
-    <div class="emoji">💌🌸💖</div>
-    <h2>Gửi những cô gái đáng quý</h2>
-    <div class="typewriter" id="typedMessage"></div>
-    <p class="script">Chúc mừng ngày Phụ nữ Việt Nam 20/10!</p>
-    <div class="buttons">
-      <button class="btn secondary" onclick="go(6)">← Quay lại</button>
-      <button class="btn" onclick="go(8)">Bùng nổ nào! 🎆</button>
-    </div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">A special wish for everyone</div><div class="emoji">💌🌸💖</div><h2>Gửi những cô gái đáng quý</h2>
+ <div class="typewriter" id="typedMessage"></div><p class="script">Chúc mừng ngày Phụ nữ Việt Nam 20/10!</p>
+ <div class="buttons"><button class="btn secondary" onclick="go(6)">← Quay lại</button><button class="btn" onclick="go(8)">Bùng nổ nào! 🎆</button></div></div>
 </section>
 
-<!-- MÀN 9 -->
-<section class="screen" data-screen="8">
-  <div class="content">
-    <div class="eyebrow">The grand finale</div>
-    <div class="emoji">🎆💗🎆</div>
-    <h1>Happy 20/10!</h1>
-    <h2>Luôn xinh đẹp, vui vẻ và hạnh phúc nhé!</h2>
-    <p>
-      Chúc tất cả các bạn nữ luôn tự tin, gặp nhiều may mắn,
-      học tập thuận lợi và có thật nhiều khoảnh khắc đáng nhớ.
-    </p>
-    <p class="script">Các bạn chính là những bông hoa tuyệt vời! 🌷</p>
-    <div class="buttons">
-      <button class="btn" onclick="celebrate()">🎆 Bắn pháo hoa!</button>
-      <button class="btn secondary" onclick="restart()">↻ Xem lại từ đầu</button>
-    </div>
-    <div class="footer-note">Một lời chúc dành cho tất cả các bạn nữ ♡</div>
-  </div>
+<section class="screen">
+ <div class="content"><div class="eyebrow">The grand finale</div><div class="emoji">🎆💗🎆</div><h1>Happy 20/10!</h1><h2>Luôn xinh đẹp, vui vẻ và hạnh phúc nhé!</h2>
+ <p>Chúc tất cả các bạn nữ luôn tự tin, gặp nhiều may mắn, học tập thuận lợi và có thật nhiều khoảnh khắc đáng nhớ.</p>
+ <div class="script">Các bạn chính là những bông hoa tuyệt vời! 🌷</div>
+ <div class="buttons"><button class="btn" onclick="celebrate()">🎆 Bắn pháo hoa!</button><button class="btn secondary" onclick="restart()">↻ Xem lại từ đầu</button></div><div class="footer-note">Một lời chúc dành cho tất cả các bạn nữ ♡</div></div>
 </section>
 
 <script>
-const screens = [...document.querySelectorAll('.screen')];
-const dotsBox = document.getElementById('dots');
-const music = document.getElementById('music');
-const musicBtn = document.getElementById('musicBtn');
+const screens=[...document.querySelectorAll('.screen')];
+const dotsBox=document.getElementById('dots');
+const music=document.getElementById('music');
+const musicBtn=document.getElementById('musicBtn');
+let current=0,typedOnce=false,celebrationTimer=null;
 
-let current = 0;
-let typedOnce = false;
+screens.forEach((_,i)=>{const dot=document.createElement('span');dot.className='dot'+(i===0?' active':'');dotsBox.appendChild(dot)});
+const dots=[...dotsBox.querySelectorAll('.dot')];
 
-screens.forEach((_, i) => {
-  const dot = document.createElement('span');
-  dot.className = 'dot' + (i === 0 ? ' active' : '');
-  dotsBox.appendChild(dot);
-});
-
-const dots = [...dotsBox.querySelectorAll('.dot')];
-
-function go(index) {
-  if (index < 0 || index >= screens.length) return;
-
-  screens[current].classList.remove('active');
-  current = index;
-  screens[current].classList.add('active');
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === current);
-  });
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  if (current === 7) startTyping();
-  if (current === 8) celebrate();
-
-  // Thử phát nhạc sau thao tác nhấn của người dùng.
-  if (music.paused) {
-    music.play().then(() => {
-      musicBtn.classList.add('playing');
-      musicBtn.textContent = '♫';
-    }).catch(() => {});
-  }
+function go(index){
+ if(index<0||index>=screens.length)return;
+ screens[current].classList.remove('active');current=index;screens[current].classList.add('active');
+ dots.forEach((dot,i)=>dot.classList.toggle('active',i===current));
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(current===7)startTyping();
+ if(current===8)celebrate();
+ if(music.paused)music.play().then(()=>musicBtn.classList.add('playing')).catch(()=>{});
 }
-
-function openLetter() {
-  document.getElementById('envelope').classList.add('open');
-  document.getElementById('letter').classList.add('show');
+function openLetter(){document.getElementById('envelope').classList.add('open');document.getElementById('letter').classList.add('show')}
+document.getElementById('envelope').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+function toggleMusic(){
+ if(music.paused)music.play().then(()=>musicBtn.classList.add('playing')).catch(()=>alert('Kiểm tra file music.mp3 đã nằm cạnh index.html chưa nhé!'));
+ else{music.pause();musicBtn.classList.remove('playing');musicBtn.textContent='♪'}
 }
-
-document.getElementById('envelope').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    openLetter();
-  }
-});
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play().then(() => {
-      musicBtn.classList.add('playing');
-      musicBtn.textContent = '♫';
-    }).catch(() => {
-      alert('Không phát được nhạc. Hãy kiểm tra file music.mp3 có nằm cạnh index.html không nhé!');
-    });
-  } else {
-    music.pause();
-    musicBtn.classList.remove('playing');
-    musicBtn.textContent = '♪';
-  }
+const flowerWishes=[
+'Chúc các bạn luôn rạng rỡ, tự tin và tỏa sáng theo cách riêng của mình. Không cần giống bất kỳ ai, vì phiên bản của chính bạn đã rất đặc biệt rồi! 🌹',
+'Mong các bạn luôn vững vàng, dám theo đuổi ước mơ và tin vào năng lực của bản thân. Cứ thử sức nhé, các bạn làm được nhiều hơn mình nghĩ đấy! 🌻',
+'Chúc những ngày bận rộn vẫn có khoảng trời bình yên, lòng luôn nhẹ nhàng và luôn có người để sẻ chia. 🕊️',
+'Chúc mọi dự định thuận lợi, thi cử suôn sẻ và luôn gặp những người tốt trên hành trình của mình. Mong may mắn gõ cửa đúng lúc! 🍀',
+'Mong các bạn luôn được yêu thương, trân trọng và có thật nhiều lý do để mỉm cười mỗi ngày. Hạnh phúc không chỉ ở những điều lớn lao mà còn trong những khoảnh khắc bình thường. 🌸'
+];
+function showFlower(index){
+ document.getElementById('flowerMessage').textContent=flowerWishes[index];
+ document.querySelectorAll('.flower-card').forEach((card,i)=>card.classList.toggle('selected',i===index));
 }
-
-const message =
-`Chúc các bạn luôn xinh đẹp theo cách riêng,
+function chooseWish(button,message){
+ document.querySelectorAll('.choice').forEach(el=>el.classList.remove('selected'));
+ button.classList.add('selected');document.getElementById('wishResult').textContent=message;
+}
+const sisterWishes=[
+ 'Chúc bạn ngày càng tin vào giá trị của mình, dám thử những điều mới và tỏa sáng mà không cần so sánh với bất kỳ ai. 💪',
+ 'Chúc bạn học đâu hiểu đó, biết cách học phù hợp với mình và từng bước tiến gần hơn tới mục tiêu. Cứ tiến bộ từng chút một cũng rất đáng tự hào! 📚',
+ 'Mong bạn biết nghỉ ngơi khi mệt, không phải ôm hết mọi chuyện một mình và luôn tìm được những khoảng bình yên giữa ngày bận rộn. 🌿',
+ 'Chúc bạn đủ can đảm để nói lên suy nghĩ, đặt ranh giới khi cần và được mọi người lắng nghe, tôn trọng. 🗣️',
+ 'Mong bạn dịu dàng với chính mình hơn, trân trọng cả những điều chưa hoàn hảo và nhớ rằng bạn vẫn xứng đáng được yêu thương. 💗',
+ 'Chúc bạn gặp được những người chân thành, có thêm nhiều kết nối vui vẻ và luôn có người để chia sẻ cả niềm vui lẫn lúc khó khăn. 🤝',
+ 'Chúc bạn giữ được động lực, kiên trì với điều mình chọn và không nản lòng chỉ vì tiến độ đôi khi chậm hơn mong đợi. ✨',
+ 'Mong những cơ hội tốt sẽ đến, và khi chúng xuất hiện, bạn đủ tự tin để nắm lấy. Chúc bạn gặp nhiều may mắn trên hành trình của mình! 🍀'
+];
+function chooseSisterWish(button,index){
+ document.querySelectorAll('#sisterChoices .choice').forEach(el=>el.classList.remove('selected'));
+ button.classList.add('selected');
+ document.getElementById('sisterWishResult').textContent=sisterWishes[index];
+}
+const message=`Chúc các bạn luôn xinh đẹp theo cách riêng,
 mạnh mẽ trước thử thách và dịu dàng với chính mình.
 
 Chúc học tập thuận lợi, thi cử may mắn,
@@ -643,181 +225,49 @@ có niềm vui để mỉm cười và có thật nhiều lý do
 
 P/S: Hôm nay cứ xinh đẹp và vui vẻ hết mình,
 còn việc khó... để ngày mai tính tiếp! 😂💗`;
-
-function startTyping() {
-  if (typedOnce) return;
-  typedOnce = true;
-
-  const target = document.getElementById('typedMessage');
-  let i = 0;
-
-  function typeNext() {
-    if (i >= message.length) return;
-    target.textContent += message.charAt(i);
-    i++;
-    setTimeout(typeNext, 24);
-  }
-
-  typeNext();
+function startTyping(){
+ if(typedOnce)return;typedOnce=true;const target=document.getElementById('typedMessage');let i=0;
+ function typeNext(){if(i>=message.length)return;target.textContent+=message.charAt(i++);setTimeout(typeNext,24)}typeNext();
 }
-
-// Hoa rơi
-const petalsBox = document.getElementById('petals');
-const petalChars = ['🌸', '🌷', '💮', '✿', '💕'];
-
-function createPetal() {
-  const petal = document.createElement('span');
-  petal.className = 'petal';
-  petal.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
-  petal.style.left = Math.random() * 100 + 'vw';
-  petal.style.fontSize = (12 + Math.random() * 17) + 'px';
-  const duration = 7 + Math.random() * 8;
-  petal.style.animationDuration = duration + 's';
-  petalsBox.appendChild(petal);
-  setTimeout(() => petal.remove(), duration * 1000);
+const petalsBox=document.getElementById('petals');
+const petalChars=['🌸','🌷','💮','✿','💕'];
+function createPetal(){
+ const p=document.createElement('span');p.className='petal';p.textContent=petalChars[Math.floor(Math.random()*petalChars.length)];
+ p.style.left=Math.random()*100+'vw';p.style.fontSize=(12+Math.random()*17)+'px';const d=7+Math.random()*8;p.style.animationDuration=d+'s';petalsBox.appendChild(p);setTimeout(()=>p.remove(),d*1000);
 }
-
-setInterval(() => {
-  if (!document.hidden) createPetal();
-}, 420);
-
-// Lấp lánh
-const sparklesBox = document.getElementById('sparkles');
-
-for (let i = 0; i < 28; i++) {
-  const s = document.createElement('span');
-  s.className = 'sparkle';
-  s.textContent = Math.random() > .5 ? '✦' : '✧';
-  s.style.left = Math.random() * 100 + '%';
-  s.style.top = Math.random() * 100 + '%';
-  s.style.fontSize = (8 + Math.random() * 14) + 'px';
-  s.style.animationDelay = Math.random() * 2 + 's';
-  sparklesBox.appendChild(s);
+setInterval(()=>{if(!document.hidden)createPetal()},500);
+const sparklesBox=document.getElementById('sparkles');
+for(let i=0;i<28;i++){const s=document.createElement('span');s.className='sparkle';s.textContent=Math.random()>.5?'✦':'✧';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.fontSize=(8+Math.random()*14)+'px';s.style.animationDelay=Math.random()*2+'s';sparklesBox.appendChild(s)}
+const canvas=document.getElementById('fireworks'),ctx=canvas.getContext('2d');let particles=[];
+function resizeCanvas(){const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.floor(innerWidth*dpr);canvas.height=Math.floor(innerHeight*dpr);canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+addEventListener('resize',resizeCanvas);resizeCanvas();
+function launchFirework(x,y){
+ const hue=Math.floor(Math.random()*360),count=65+Math.floor(Math.random()*35);
+ for(let i=0;i<count;i++){const a=Math.PI*2*i/count,s=1.2+Math.random()*4.3;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:55+Math.random()*35,maxLife:90,hue:(hue+Math.random()*35)%360,size:1.5+Math.random()*2.4})}
 }
-
-// Pháo hoa canvas
-const canvas = document.getElementById('fireworks');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let lastFrame = 0;
-
-function resizeCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = Math.floor(window.innerWidth * dpr);
-  canvas.height = Math.floor(window.innerHeight * dpr);
-  canvas.style.width = window.innerWidth + 'px';
-  canvas.style.height = window.innerHeight + 'px';
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+function animateFireworks(){
+ requestAnimationFrame(animateFireworks);if(document.hidden)return;
+ ctx.clearRect(0,0,innerWidth,innerHeight);
+ for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.vx*=.992;p.vy*=.992;p.life--;
+ ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`hsla(${p.hue},100%,65%,${Math.max(0,p.life/p.maxLife)})`;ctx.fill();if(p.life<=0)particles.splice(i,1)}
 }
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function launchFirework(x, y) {
-  const hue = Math.floor(Math.random() * 360);
-  const count = 65 + Math.floor(Math.random() * 35);
-
-  for (let i = 0; i < count; i++) {
-    const angle = Math.PI * 2 * i / count;
-    const speed = 1.2 + Math.random() * 4.3;
-
-    particles.push({
-      x, y,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      life: 55 + Math.random() * 35,
-      maxLife: 90,
-      hue: (hue + Math.random() * 35) % 360,
-      size: 1.5 + Math.random() * 2.4
-    });
-  }
-}
-
-function animateFireworks(timestamp) {
-  requestAnimationFrame(animateFireworks);
-
-  if (document.hidden) return;
-
-  // Làm mờ khung hình trước để tạo vệt sáng.
-  ctx.fillStyle = 'rgba(255, 245, 251, 0.16)';
-  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
-  for (let i = particles.length - 1; i >= 0; i--) {
-    const p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.035;
-    p.vx *= 0.992;
-    p.vy *= 0.992;
-    p.life--;
-
-    const alpha = Math.max(0, p.life / p.maxLife);
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${alpha})`;
-    ctx.fill();
-
-    if (p.life <= 0) particles.splice(i, 1);
-  }
-}
-
 requestAnimationFrame(animateFireworks);
-
-function randomFirework() {
-  launchFirework(
-    window.innerWidth * (0.12 + Math.random() * 0.76),
-    window.innerHeight * (0.12 + Math.random() * 0.48)
-  );
+function randomFirework(){launchFirework(innerWidth*(.12+Math.random()*.76),innerHeight*(.12+Math.random()*.48))}
+function celebrate(){
+ for(let i=0;i<4;i++)setTimeout(randomFirework,i*250);
+ clearInterval(celebrationTimer);let count=0;
+ celebrationTimer=setInterval(()=>{randomFirework();if(++count>=10){clearInterval(celebrationTimer);celebrationTimer=null}},550);
+ for(let i=0;i<12;i++)setTimeout(()=>{const h=document.createElement('span');h.className='petal';h.textContent=['💗','💖','💕','✨'][Math.floor(Math.random()*4)];h.style.left=(10+Math.random()*80)+'vw';h.style.top=(45+Math.random()*35)+'vh';h.style.fontSize=(18+Math.random()*20)+'px';h.style.animationDuration='3s';petalsBox.appendChild(h);setTimeout(()=>h.remove(),3000)},i*100);
 }
-
-let celebrationTimer = null;
-
-function celebrate() {
-  for (let i = 0; i < 4; i++) {
-    setTimeout(randomFirework, i * 250);
-  }
-
-  // Bắn thêm các đợt pháo hoa trong vài giây.
-  let count = 0;
-  clearInterval(celebrationTimer);
-  celebrationTimer = setInterval(() => {
-    randomFirework();
-    count++;
-    if (count >= 10) {
-      clearInterval(celebrationTimer);
-      celebrationTimer = null;
-    }
-  }, 550);
-
-  // Thêm trái tim bay.
-  for (let i = 0; i < 12; i++) {
-    setTimeout(() => {
-      const heart = document.createElement('span');
-      heart.className = 'petal';
-      heart.textContent = ['💗', '💖', '💕', '✨'][Math.floor(Math.random() * 4)];
-      heart.style.left = (10 + Math.random() * 80) + 'vw';
-      heart.style.top = (45 + Math.random() * 35) + 'vh';
-      heart.style.fontSize = (18 + Math.random() * 20) + 'px';
-      heart.style.animationDuration = '3s';
-      petalsBox.appendChild(heart);
-      setTimeout(() => heart.remove(), 3000);
-    }, i * 100);
-  }
-}
-
-function restart() {
-  clearInterval(celebrationTimer);
-  celebrationTimer = null;
-  particles = [];
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-  document.getElementById('envelope').classList.remove('open');
-  document.getElementById('letter').classList.remove('show');
-
-  document.getElementById('typedMessage').textContent = '';
-  typedOnce = false;
-
-  go(0);
+function restart(){
+ clearInterval(celebrationTimer);celebrationTimer=null;particles=[];
+ document.getElementById('envelope').classList.remove('open');document.getElementById('letter').classList.remove('show');
+ document.getElementById('typedMessage').textContent='';typedOnce=false;
+ document.getElementById('flowerMessage').textContent='🌷 Chọn một bông hoa phía trên để đọc lời chúc.';
+ document.querySelectorAll('.flower-card,.choice').forEach(el=>el.classList.remove('selected'));
+ document.getElementById('sisterWishResult').textContent='Chọn điều bạn muốn cải thiện để nhận lời chúc riêng nhé 🌷';
+ document.getElementById('wishResult').textContent='Chạm vào một lựa chọn để nhận lời chúc ✨';
+ go(0);
 }
 </script>
 </body>
